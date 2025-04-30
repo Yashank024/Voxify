@@ -311,20 +311,30 @@ def preload_static_assets():
 # Authentication routes
 @app.route('/api/login', methods=['POST'])
 def login():
-    """Login with email and password"""
+    """Login with email and password - Always returns JSON"""
     data = request.json
     email = data.get('email')
     password = data.get('password')
     
     if not email or not password:
-        return jsonify({"error": "Email and password are required"}), 400
+        response = jsonify({
+            "success": False,
+            "error": "Email and password are required"
+        })
+        response.headers['Content-Type'] = 'application/json'
+        return response, 400
     
     db = get_db()
     
     # Use faster list comprehension instead of next() with generator
     matching_users = [u for u in db['users'] if u['email'] == email]
     if not matching_users or not check_password_hash(matching_users[0].get('password_hash', ''), password):
-        return jsonify({"error": "Invalid email or password"}), 401
+        response = jsonify({
+            "success": False,
+            "error": "Invalid email or password"
+        })
+        response.headers['Content-Type'] = 'application/json'
+        return response, 401
     
     user = matching_users[0]
     
@@ -341,17 +351,19 @@ def login():
     
     # Return user data (excluding password) - use dict comprehension for better performance
     user_data = {k: v for k, v in user.items() if k != 'password_hash'}
-    return jsonify({
+    response = jsonify({
         "success": True,
         "redirect": "/chat.html",
         "user": user_data,
         "token": "authenticated"  # Add token for client-side auth check
     })
+    response.headers['Content-Type'] = 'application/json'
+    return response, 200
 
 # Signup route
 @app.route('/api/signup', methods=['POST'])
 def signup():
-    """Register a new user with email and password"""
+    """Register a new user with email and password - Always returns JSON"""
     data = request.json
     name = data.get('name')
     email = data.get('email')
@@ -359,20 +371,40 @@ def signup():
     
     # Validate inputs
     if not name or not email or not password:
-        return jsonify({"error": "Name, email and password are required"}), 400
+        response = jsonify({
+            "success": False,
+            "error": "Name, email and password are required"
+        })
+        response.headers['Content-Type'] = 'application/json'
+        return response, 400
         
     # Validate email format
     if not re.match(r'^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,}$', email):
-        return jsonify({"error": "Invalid email format"}), 400
+        response = jsonify({
+            "success": False,
+            "error": "Invalid email format"
+        })
+        response.headers['Content-Type'] = 'application/json'
+        return response, 400
         
     # Validate password strength (at least 8 characters)
     if len(password) < 8:
-        return jsonify({"error": "Password must be at least 8 characters long"}), 400
+        response = jsonify({
+            "success": False,
+            "error": "Password must be at least 8 characters long"
+        })
+        response.headers['Content-Type'] = 'application/json'
+        return response, 400
     
     # Check if user already exists
     db = get_db()
     if any(user['email'] == email for user in db['users']):
-        return jsonify({"error": "Email already registered"}), 400
+        response = jsonify({
+            "success": False,
+            "error": "Email already registered"
+        })
+        response.headers['Content-Type'] = 'application/json'
+        return response, 400
     
     # Create new user
     user_id = str(uuid.uuid4())
@@ -395,7 +427,7 @@ def signup():
     session['user_id'] = user_id
     
     # Return success response
-    return jsonify({
+    response = jsonify({
         "success": True,
         "redirect": "/chat.html",
         "user": {
@@ -404,21 +436,30 @@ def signup():
             "email": email
         }
     })
+    response.headers['Content-Type'] = 'application/json'
+    return response, 200
 
 # Logout route
 @app.route('/api/logout', methods=['POST'])
 def logout():
-    """Logout user and clear session"""
+    """Logout user and clear session - Always returns JSON"""
     try:
         # Clear session data
         session.clear()
-        return jsonify({
+        response = jsonify({
             'success': True, 
             'message': 'Logged out successfully',
             'redirect': 'login.html'
         })
+        response.headers['Content-Type'] = 'application/json'
+        return response, 200
     except Exception as e:
-        return jsonify({'success': False, 'error': str(e)}), 500
+        response = jsonify({
+            'success': False, 
+            'error': str(e)
+        })
+        response.headers['Content-Type'] = 'application/json'
+        return response, 500
 
 # Profile routes
 @app.route('/api/profile', methods=['GET'])
@@ -556,7 +597,7 @@ def update_avatar():
 # Logout endpoint
 @app.route('/api/logout-session', methods=['POST'])
 def logout_api():
-    """Logout user and clear session"""
+    """Logout user and clear session - Always returns JSON"""
     try:
         # Get session ID from cookie
         session_id = request.cookies.get('session_id')
@@ -566,7 +607,13 @@ def logout_api():
             print(f"Session cleared on logout: {session_id}")
         
         # Create response with redirect
-        response = jsonify({"success": True, "redirect": "/login.html"})
+        response = jsonify({
+            "success": True, 
+            "redirect": "/login.html"
+        })
+        
+        # Set Content-Type header
+        response.headers['Content-Type'] = 'application/json'
         
         # Clear session cookie
         response.set_cookie('session_id', '', expires=0)
@@ -575,7 +622,13 @@ def logout_api():
     
     except Exception as e:
         print(f"Error during logout: {str(e)}")
-        return jsonify({"error": "Failed to logout", "message": str(e)}), 500
+        response = jsonify({
+            "success": False,
+            "error": "Failed to logout", 
+            "message": str(e)
+        })
+        response.headers['Content-Type'] = 'application/json'
+        return response, 500
 
 # Add CORS headers to all responses
 @app.after_request
@@ -596,12 +649,17 @@ def handle_options(path):
 # Check if user exists endpoint
 @app.route('/api/check-user-exists', methods=['POST'])
 def check_user_exists_api():
-    """Check if a user exists in the database"""
+    """Check if a user exists in the database - Always returns JSON"""
     data = request.json
     email = data.get('email')
     
     if not email:
-        return jsonify({"error": "Email is required"}), 400
+        response = jsonify({
+            "success": False,
+            "error": "Email is required"
+        })
+        response.headers['Content-Type'] = 'application/json'
+        return response, 400
     
     db = get_db()
     
@@ -609,9 +667,12 @@ def check_user_exists_api():
     matching_users = [u for u in db['users'] if u['email'] == email]
     user_exists = len(matching_users) > 0
     
-    return jsonify({
+    response = jsonify({
+        "success": True,
         "exists": user_exists
     })
+    response.headers['Content-Type'] = 'application/json'
+    return response, 200
 
 # Conversations API endpoints
 @app.route('/api/conversations', methods=['GET'])
