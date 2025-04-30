@@ -1,0 +1,207 @@
+/**
+ * Voxify Chat Application - Notifications and Loading Styles
+ * Contains styles for notifications, loading spinners, and error messages
+ */
+
+/* Notification Container */
+.notification-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+/* Individual Notification */
+.notification {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  max-width: 350px;
+  transform: translateX(100%);
+  animation: slide-in 0.3s forwards;
+  pointer-events: auto;
+  border-left: 4px solid #4caf50;
+}
+
+.notification.fade-out {
+  animation: slide-out 0.3s forwards;
+}
+
+.notification i {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.notification span {
+  font-size: 14px;
+  color: #333;
+}
+
+/* Notification Types */
+.notification.success {
+  border-left-color: #4caf50;
+}
+
+.notification.success i {
+  color: #4caf50;
+}
+
+.notification.error {
+  border-left-color: #f44336;
+}
+
+.notification.error i {
+  color: #f44336;
+}
+
+.notification.info {
+  border-left-color: #2196f3;
+}
+
+.notification.info i {
+  color: #2196f3;
+}
+
+/* Loading Spinner */
+.profile-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  width: 100%;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--primary-color, #2196f3);
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 15px;
+}
+
+.profile-loading p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Error Message */
+.profile-error {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  width: 100%;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.profile-error i {
+  font-size: 40px;
+  color: #f44336;
+  margin-bottom: 15px;
+}
+
+.profile-error p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.retry-btn {
+  background-color: var(--primary-color, #2196f3);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.retry-btn:hover {
+  background-color: var(--primary-color-dark, #1976d2);
+}
+
+/* Save Button */
+.save-profile-btn {
+  background-color: var(--primary-color, #2196f3);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.save-profile-btn i {
+  margin-right: 8px;
+}
+
+.save-profile-btn:hover {
+  background-color: var(--primary-color-dark, #1976d2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Editing State */
+.editable-field.editing input {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-bottom: 2px solid var(--primary-color, #2196f3);
+}
+
+/* Animations */
+@keyframes slide-in {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

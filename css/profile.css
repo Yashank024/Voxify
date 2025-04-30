@@ -1,0 +1,311 @@
+/* Voxify Profile Panel Styles */
+
+/* Profile Panel Base Styles */
+.profile-panel {
+    position: fixed;
+    top: 0;
+    right: -400px; /* Start off-screen */
+    width: 400px;
+    height: 100vh;
+    background-color: var(--white);
+    z-index: 1000;
+    transition: transform var(--transition-normal) ease-in-out;
+    box-shadow: var(--shadow-xl);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.profile-panel[aria-hidden="false"] {
+    transform: translateX(-400px);
+}
+
+/* Profile Background with Fluid Shapes */
+.profile-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.profile-shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.1;
+}
+
+.profile-shape.shape-1 {
+    width: 300px;
+    height: 300px;
+    background-color: var(--primary);
+    top: -100px;
+    right: -100px;
+}
+
+.profile-shape.shape-2 {
+    width: 250px;
+    height: 250px;
+    background-color: var(--accent);
+    bottom: 20%;
+    left: -100px;
+}
+
+.profile-shape.shape-3 {
+    width: 200px;
+    height: 200px;
+    background-color: var(--secondary);
+    bottom: -50px;
+    right: 20%;
+}
+
+/* Profile Header */
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--medium-gray);
+    background-color: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.profile-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--black);
+    margin: 0;
+}
+
+.close-profile-btn {
+    color: var(--gray);
+    transition: var(--transition-fast);
+}
+
+.close-profile-btn:hover {
+    color: var(--primary);
+    background-color: var(--light-gray);
+}
+
+/* Profile Content */
+.profile-content {
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+/* Profile Avatar */
+.profile-avatar-container {
+    display: flex;
+    justify-content: center;
+    padding: var(--space-lg) 0;
+}
+
+.profile-avatar {
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-full);
+    object-fit: cover;
+    border: 3px solid var(--white);
+    box-shadow: var(--shadow-md);
+}
+
+.change-avatar-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    background-color: var(--primary);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--white);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-fast);
+}
+
+.change-avatar-btn:hover {
+    transform: scale(1.1);
+    background-color: var(--primary-dark);
+}
+
+/* Profile Info Section */
+.profile-info-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+/* Profile Field */
+.profile-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.profile-field label {
+    font-size: 14px;
+    color: var(--gray);
+    font-weight: 500;
+}
+
+.editable-field {
+    display: flex;
+    align-items: center;
+    background-color: var(--light-gray);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-md);
+    transition: var(--transition-normal);
+}
+
+.editable-field:focus-within {
+    background-color: var(--white);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--primary-light);
+}
+
+.editable-field input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 16px;
+    color: var(--dark-gray);
+    padding: var(--space-xs) 0;
+}
+
+.editable-field.readonly input {
+    color: var(--gray);
+}
+
+.edit-field-btn {
+    color: var(--gray);
+    transition: var(--transition-fast);
+}
+
+.edit-field-btn:hover {
+    color: var(--primary);
+    transform: scale(1.1);
+}
+
+.field-description {
+    font-size: 12px;
+    color: var(--gray);
+    margin-top: 2px;
+}
+
+/* Toggle Field */
+.toggle-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-sm) var(--space-md);
+    background-color: var(--light-gray);
+    border-radius: var(--radius-md);
+}
+
+.toggle-field span {
+    font-size: 16px;
+    color: var(--dark-gray);
+}
+
+.toggle-btn {
+    color: var(--gray);
+    font-size: 20px;
+    transition: var(--transition-fast);
+}
+
+.toggle-btn:hover {
+    color: var(--primary);
+}
+
+.toggle-btn .fa-toggle-on {
+    color: var(--primary);
+}
+
+/* Dropdown Field */
+.dropdown-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-sm) var(--space-md);
+    background-color: var(--light-gray);
+    border-radius: var(--radius-md);
+}
+
+.dropdown-field span {
+    font-size: 16px;
+    color: var(--dark-gray);
+}
+
+.dropdown-btn {
+    color: var(--gray);
+    transition: var(--transition-fast);
+}
+
+.dropdown-btn:hover {
+    color: var(--primary);
+}
+
+/* Profile Actions */
+.profile-actions {
+    margin-top: var(--space-xl);
+    display: flex;
+    justify-content: center;
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background-color: var(--error);
+    color: var(--white);
+    padding: var(--space-sm) var(--space-xl);
+    border-radius: var(--radius-md);
+    font-size: 16px;
+    font-weight: 500;
+    transition: var(--transition-normal);
+}
+
+.logout-btn:hover {
+    background-color: #d32f2f;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .profile-panel {
+        width: 350px;
+        right: -350px;
+    }
+    
+    .profile-panel[aria-hidden="false"] {
+        transform: translateX(-350px);
+    }
+}
+
+@media (max-width: 576px) {
+    .profile-panel {
+        width: 100%;
+        right: -100%;
+    }
+    
+    .profile-panel[aria-hidden="false"] {
+        transform: translateX(-100%);
+    }
+}

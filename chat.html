@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voxify - Chat</title>
+    <link rel="icon" href="img/Only Voxify logo non text (1).png" type="image/png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/notifications.css">
+    <link rel="stylesheet" href="css/user-selection-modal.css">
+    <link rel="stylesheet" href="css/contacts-modal.css">
+    <link rel="stylesheet" href="css/user-modal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Contacts sidebar -->
+        <aside class="contacts-sidebar">
+            <div class="sidebar-header">
+                <div class="user-profile" data-open-profile>
+                    <div class="user-avatar">
+                        <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="User Avatar">
+                        <span class="status-indicator online"></span>
+                    </div>
+                    <div class="user-info">
+                        <h3>User_Data</h3>
+                        <p>Available</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="icon-btn plus-icon-btn" aria-label="New chat">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <!-- Three-dot menu button with proper ARIA attributes -->
+                    <button class="icon-btn three-dot-btn" aria-label="Menu" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Three-dot menu container with semantic list structure -->
+            <div class="three-dot-menu" aria-hidden="true" role="menu">
+                <ul class="menu-list">
+                    <li role="menuitem"><button class="menu-item"><i class="fas fa-users"></i>New Group</button></li>
+                    <li role="menuitem"><button class="menu-item"><i class="fas fa-broadcast-tower"></i>New Broadcast</button></li>
+                    <li role="menuitem"><button class="menu-item"><i class="fas fa-star"></i>Starred Messages</button></li>
+                    <li role="menuitem"><button class="menu-item"><i class="fas fa-cog"></i>Settings</button></li>
+                    <li role="menuitem" class="has-submenu">
+                        <button class="menu-item translation-btn" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-language"></i>Translation
+                            <i class="fas fa-chevron-right submenu-arrow"></i>
+                        </button>
+                        <!-- Language submenu -->
+                        <ul class="language-submenu" aria-hidden="true" role="menu">
+                            <li role="menuitem"><button class="language-item" data-lang="en"><img src="img/flags/en.svg" alt="English flag">English</button></li>
+                            <li role="menuitem"><button class="language-item" data-lang="hi"><img src="img/flags/hi.svg" alt="Hindi flag">Hindi</button></li>
+                            <li role="menuitem"><button class="language-item" data-lang="es"><img src="img/flags/es.svg" alt="Spanish flag">Spanish</button></li>
+                            <li role="menuitem"><button class="language-item" data-lang="fr"><img src="img/flags/fr.svg" alt="French flag">French</button></li>
+                            <li role="menuitem"><button class="language-item" data-lang="de"><img src="img/flags/de.svg" alt="German flag">German</button></li>
+                        </ul>
+                    </li>
+                    <li role="menuitem"><button class="menu-item"><i class="fas fa-sign-out-alt"></i>Logout</button></li>
+                </ul>
+            </div>
+            
+            <div class="search-container">
+                <div class="search-input-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search conversations" class="search-input">
+                </div>
+            </div>
+            
+            <div class="contacts-list">
+                <!-- Empty state message -->
+                <div class="empty-state">
+                    <div class="empty-state-icon">
+                        <i class="far fa-comments"></i>
+                    </div>
+                    <h3>No conversations yet</h3>
+                    <p>Start chatting with friends and colleagues</p>
+                    <button class="new-chat-btn">
+                        <i class="fas fa-plus"></i>
+                        New Chat
+                    </button>
+                </div>
+                
+                <!-- This section will be populated with contacts dynamically -->
+                <!-- Example contact item (hidden initially) -->
+                <div class="contact-item" style="display: none;">
+                    <div class="contact-avatar">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Contact Avatar">
+                        <span class="status-indicator online"></span>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-name-time">
+                            <h4>Kaushik Dhameliya</h4>
+                            <span class="message-time">10:42 AM</span>
+                        </div>
+                        <div class="last-message-row">
+                            <p class="last-message">Hey, how's the project coming along?</p>
+                            <div class="message-indicators">
+                                <span class="unread-count">2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Chat panel -->
+        <main class="chat-panel">
+            <div class="chat-header">
+                <div class="chat-contact">
+                    <div class="contact-avatar">
+                        <img src="img/Only Voxify logo non text (1).png" alt="Voxify Logo">
+                    </div>
+                    <div class="contact-info">
+                        <h3>Voxify Assistant</h3>
+                        <p class="contact-status">Online</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="icon-btn plus-icon-btn" aria-label="New chat">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <!-- Three-dot menu button - positioned to the right of profile avatar -->
+                    <button class="icon-btn three-dot-btn" aria-label="Menu" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    
+                    <!-- Three-dot menu container with semantic list structure -->
+                    <div class="three-dot-menu" aria-hidden="true" role="menu">
+                        <ul class="menu-list">
+                            <li role="menuitem"><button class="menu-item"><i class="fas fa-users"></i>New Group</button></li>
+                            <li role="menuitem"><button class="menu-item"><i class="fas fa-broadcast-tower"></i>New Broadcast</button></li>
+                            <li role="menuitem"><button class="menu-item"><i class="fas fa-star"></i>Starred Messages</button></li>
+                            <li role="menuitem"><button class="menu-item"><i class="fas fa-cog"></i>Settings</button></li>
+                            <li role="menuitem" class="has-submenu">
+                                <button class="menu-item translation-btn" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-language"></i>Translation
+                                    <i class="fas fa-chevron-right submenu-arrow"></i>
+                                </button>
+                                <!-- Language submenu -->
+                                <ul class="language-submenu" aria-hidden="true" role="menu">
+                                    <li role="menuitem"><button class="language-item" data-lang="en"><img src="img/flags/en.svg" alt="English flag">English</button></li>
+                                    <li role="menuitem"><button class="language-item" data-lang="hi"><img src="img/flags/hi.svg" alt="Hindi flag">Hindi</button></li>
+                                    <li role="menuitem"><button class="language-item" data-lang="es"><img src="img/flags/es.svg" alt="Spanish flag">Spanish</button></li>
+                                    <li role="menuitem"><button class="language-item" data-lang="fr"><img src="img/flags/fr.svg" alt="French flag">French</button></li>
+                                    <li role="menuitem"><button class="language-item" data-lang="de"><img src="img/flags/de.svg" alt="German flag">German</button></li>
+                                </ul>
+                            </li>
+                            <li role="menuitem"><button class="menu-item"><i class="fas fa-sign-out-alt"></i>Logout</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="messages-area">
+                <!-- Background fluid shapes -->
+                <div class="fluid-shapes">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                    <div class="shape shape-3"></div>
+                </div>
+                
+                <!-- Messages container -->
+                <div class="messages-container">
+                    <!-- Messages will appear here when conversation starts -->
+                </div>
+            </div>
+            
+            <div class="input-area">
+                <button class="input-action-btn" aria-label="Attach file">
+                    <i class="fas fa-paperclip"></i>
+                </button>
+                <div class="message-input-wrapper">
+                    <input type="text" placeholder="Type a message..." class="message-input">
+                </div>
+                <button class="send-btn" aria-label="Send message">
+                    <i class="fas fa-paper-plane"></i>
+                    <span class="ripple"></span>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Profile Panel - Slides in from the right -->
+    <aside id="profile-panel" class="profile-panel" aria-labelledby="profile-heading" aria-hidden="true">
+        <!-- Profile background with fluid shapes -->
+        <div class="profile-background">
+            <div class="profile-shape shape-1"></div>
+            <div class="profile-shape shape-2"></div>
+            <div class="profile-shape shape-3"></div>
+        </div>
+        
+        <!-- Profile header with close button -->
+        <div class="profile-header">
+            <h2 id="profile-heading">Profile</h2>
+            <button class="icon-btn close-profile-btn" aria-label="Close profile">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+        </div>
+        
+        <!-- Error message for profile data -->
+        <div id="profile-error" class="profile-error" style="display: none;">
+            <i class="fas fa-exclamation-circle"></i>
+            <p>Unable to load profile. Please try again.</p>
+            <button id="retry-profile-load" class="retry-btn">Retry</button>
+        </div>
+        
+        <!-- Profile content -->
+        <div id="profile-content" class="profile-content">
+            <!-- User avatar section -->
+            <div class="profile-avatar-container">
+                <div class="profile-avatar">
+                    <img id="profile-avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="User Avatar" data-profile-field="avatar">
+                    <button class="change-avatar-btn" aria-label="Change profile picture" id="change-avatar-btn">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                    <input type="file" id="avatar-upload" accept="image/*" style="display: none;">
+                </div>
+            </div>
+            
+            <!-- User info section -->
+            <div class="profile-info-section">
+                <!-- Name field -->
+                <div class="profile-field">
+                    <label for="profile-name">Name</label>
+                    <div class="editable-field">
+                        <input type="text" id="profile-name" value="" data-profile-field="name" readonly>
+                        <button class="edit-field-btn" aria-label="Edit name" data-edit-field="name">
+                            <i class="fas fa-pencil-alt"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- About/Status field -->
+                <div class="profile-field">
+                    <label for="profile-about">About</label>
+                    <div class="editable-field">
+                        <input type="text" id="profile-about" value="" data-profile-field="about" readonly>
+                        <button class="edit-field-btn" aria-label="Edit about" data-edit-field="about">
+                            <i class="fas fa-pencil-alt"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Email field -->
+                <div class="profile-field">
+                    <label for="profile-email">Email</label>
+                    <div class="editable-field">
+                        <input type="email" id="profile-email" value="" data-profile-field="email" readonly>
+                        <button class="edit-field-btn" aria-label="Edit email" data-edit-field="email">
+                            <i class="fas fa-pencil-alt"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Password field -->
+                <div class="profile-field">
+                    <label for="profile-password">Password</label>
+                    <div class="editable-field">
+                        <input type="password" id="profile-password" value="********" data-profile-field="password" readonly>
+                        <button class="edit-field-btn" aria-label="Change password" data-edit-field="password">
+                            <i class="fas fa-pencil-alt"></i>
+                        </button>
+                    </div>
+                    <p class="field-description">Your account password</p>
+                </div>
+                
+                <!-- Disappearing messages field -->
+                <div class="profile-field">
+                    <label>Disappearing messages</label>
+                    <div class="toggle-field">
+                        <span id="disappearing-messages-status">Off</span>
+                        <button class="toggle-btn" aria-label="Toggle disappearing messages" id="disappearing-messages-toggle" data-profile-field="disappearing_messages">
+                            <i class="fas fa-toggle-off"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Mute notifications field -->
+                <div class="profile-field">
+                    <label>Mute notifications</label>
+                    <div class="dropdown-field">
+                        <span id="mute-notifications-status">Mute</span>
+                        <button class="dropdown-btn" aria-label="Change mute settings" id="mute-notifications-dropdown" data-profile-field="mute_notifications">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Notification tone field -->
+                <div class="profile-field">
+                    <label>Notification tone</label>
+                    <div class="dropdown-field">
+                        <span id="notification-tone-status">Default</span>
+                        <button class="dropdown-btn" aria-label="Change notification tone" id="notification-tone-dropdown" data-profile-field="notification_tone">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Save button for profile changes -->
+            <div class="profile-actions">
+                <button id="save-profile-btn" class="save-profile-btn" style="display: none;">
+                    <i class="fas fa-save"></i>
+                    Save Changes
+                </button>
+                <button class="logout-btn" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <script src="js/chat.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/conversation-manager.js"></script>
+</body>
+</html>

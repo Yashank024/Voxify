@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "id": "a97ac5a6-7527-409d-a733-bdfb60717f68",
+      "name": "YASHANK GUPTA",
+      "email": "mg4092015@gmail.com",
+      "password_hash": "pbkdf2:sha256:260000$NuPsBZK0hRKHcQ9E$7d45e64a087ff3cb9f99f067ec6c713709792ad1484334a0c826ab8fa34b9fcc",
+      "about": "Hello, I'm using Voxify!",
+      "created_at": "2025-04-29T11:00:25.190269",
+      "last_login": "2025-04-29T19:41:07.261959",
+      "avatar": "/img/avatars/a97ac5a6-7527-409d-a733-bdfb60717f68_1745938742_WhatsApp_Image_2025-04-11_at_16.20.25_9735fc06.jpg"
+    },
+    {
+      "id": "9094ee5d-2897-467b-8cc6-174113be508f",
+      "name": "Kaushik Dhuliya",
+      "email": "dhuliyakaushik@gmail.com",
+      "password_hash": "pbkdf2:sha256:260000$8426Q9ZChHmK5Hgs$c746736cbd2871a122d53ad78ae8336ef911fa967edb9c47a9413df4cdde5296",
+      "about": "Hello, I'm using Voxify!",
+      "created_at": "2025-04-29T11:17:35.051570",
+      "last_login": "2025-04-29T11:17:35.051585",
+      "avatar": "/img/avatars/9094ee5d-2897-467b-8cc6-174113be508f_1745905746_WIN_20230617_18_15_27_Pro.jpg"
+    }
+  ]
+}

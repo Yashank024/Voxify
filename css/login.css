@@ -1,0 +1,246 @@
+/* Voxify Login/Signup Page Styles */
+
+:root {
+    --light-blue: #64B5F6;
+    --dark-blue: #1565C0;
+    --orange: #FF9800;
+    --light-orange: #FFB74D;
+    --white: #FFFFFF;
+    --black: #212121;
+    --gray: #F5F5F5;
+    --dark-gray: #757575;
+    --error-red: #F44336;
+    --success-green: #4CAF50;
+}
+
+/* Login Page Layout */
+.login-container {
+    display: flex;
+    min-height: 100vh;
+    padding-top: 100px;
+    padding-bottom: 50px;
+    background-color: var(--gray);
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container {
+    background-color: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    padding: 40px;
+    margin: 0 20px;
+    transition: all 0.3s ease;
+}
+
+.login-image {
+    display: none; /* Hidden on mobile */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 40px;
+    max-width: 500px;
+}
+
+.login-image img {
+    margin-bottom: 30px;
+    transition: transform 0.5s ease;
+}
+
+.login-image img:hover {
+    transform: translateY(-10px) scale(1.05);
+}
+
+.login-image h2 {
+    color: var(--dark-blue);
+    margin-bottom: 15px;
+    font-size: 28px;
+}
+
+.login-image p {
+    color: var(--dark-gray);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Form Tabs */
+.form-tabs {
+    display: flex;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--gray);
+}
+
+.tab-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--dark-gray);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.tab-btn.active {
+    color: var(--dark-blue);
+}
+
+.tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: var(--dark-blue);
+    transition: width 0.3s ease;
+}
+
+.tab-btn.active::after {
+    width: 100%;
+}
+
+/* Form Content */
+.form-content {
+    transition: all 0.3s ease;
+}
+
+.form-content h2 {
+    color: var(--dark-blue);
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.form-content p {
+    color: var(--dark-gray);
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--black);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: var(--dark-blue);
+    box-shadow: 0 0 0 2px rgba(21, 101, 192, 0.2);
+    outline: none;
+}
+
+/* OTP Input Styles */
+.otp-group {
+    text-align: center;
+}
+
+.otp-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.otp-input {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.otp-input:focus {
+    border-color: var(--dark-blue);
+    box-shadow: 0 0 0 2px rgba(21, 101, 192, 0.2);
+    outline: none;
+}
+
+.otp-message {
+    color: var(--dark-blue);
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.resend-btn {
+    background: none;
+    border: none;
+    color: var(--dark-blue);
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: underline;
+    margin-top: 5px;
+}
+
+/* Buttons */
+.form-content .btn {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.form-footer {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--dark-gray);
+}
+
+.form-footer a {
+    color: var(--dark-blue);
+    text-decoration: none;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Utility Classes */
+.hidden {
+    display: none;
+}
+
+/* Responsive Design */
+@media (min-width: 992px) {
+    .login-container {
+        justify-content: space-between;
+        padding: 0 5%;
+    }
+    
+    .login-image {
+        display: flex;
+    }
+    
+    .form-container {
+        margin: 0;
+    }
+}
+
+/* Animation Overrides */
+.fade-up {
+    animation-duration: 0.8s;
+}
+
+.fade-left {
+    animation-duration: 0.8s;
+    animation-delay: 0.2s;
+}

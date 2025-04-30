@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voxify - Login/Signup</title>
+    <link rel="icon" href="img/Only Voxify logo non text (1).png" type="image/png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/nav-text-fix.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="img/Only Voxify logo non text (1).png" alt="Voxify Logo">
+                <h1>Voxify</h1>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-item">Home</a></li>
+                    <li><a href="index.html#features" class="nav-item">Features</a></li>
+                    <li><a href="index.html#how-it-works" class="nav-item">How It Works</a></li>
+                    <li><a href="index.html#testimonials" class="nav-item">Testimonials</a></li>
+                </ul>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Login/Signup Section -->
+    <section class="login-container">
+        <div class="form-container fade-up">
+            <div class="form-tabs">
+                <button class="tab-btn active" data-tab="login">Login</button>
+                <button class="tab-btn" data-tab="signup">Sign Up</button>
+            </div>
+            
+            <!-- Login Form -->
+            <div class="form-content" id="login-form">
+                <h2>Welcome Back!</h2>
+                <p>Login to continue your conversations</p>
+                
+                <form>
+                    <div class="form-group">
+                        <label for="login-email">Email Address</label>
+                        <input type="email" id="login-email" placeholder="Enter your email address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" placeholder="Enter your password" required>
+                    </div>
+                    
+                    <div id="login-message-container" class="message-container"></div>
+                    
+                    <button type="button" id="login-submit" class="btn btn-primary">Log In</button>
+                </form>
+            </div>
+            
+            <!-- Signup Form -->
+            <div class="form-content hidden" id="signup-form">
+                <h2>Join Voxify Today!</h2>
+                <p>Create an account to start chatting</p>
+                
+                <form>
+                    <div class="form-group">
+                        <label for="signup-name">Full Name</label>
+                        <input type="text" id="signup-name" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signup-email">Email Address</label>
+                        <input type="email" id="signup-email" placeholder="Enter your email address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" placeholder="Choose a password (min. 8 characters)" required>
+                    </div>
+                    
+                    <div id="signup-message-container" class="message-container"></div>
+                    
+                    <button type="button" id="signup-submit" class="btn btn-primary">Sign Up</button>
+                </form>
+            </div>
+            
+            <div class="form-footer">
+                <p>By continuing, you agree to Voxify's <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
+            </div>
+        </div>
+        
+        <div class="login-image fade-left">
+            <img src="img/Only Voxify logo non text (1).png" alt="Voxify" width="250">
+            <h2>Connect globally & Communicate locally</h2>
+            <p>Join millions of users worldwide and experience the future of communication with Voxify.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2023 Voxify. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voxify - Modern Chat Application</title>
+    <link rel="icon" href="img/Only Voxify logo non text (1).png" type="image/png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Authentication check script -->
+    <script>
+        // Check if user is authenticated
+        function isAuthenticated() {
+            return localStorage.getItem('token') === 'authenticated' && localStorage.getItem('user_id');
+        }
+        
+        // Redirect authenticated users to chat page
+        window.addEventListener('DOMContentLoaded', function() {
+            if (isAuthenticated()) {
+                console.log('User already authenticated, redirecting to chat page...');
+                window.location.href = 'chat.html';
+            }
+        });
+    </script>
+    <style>
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+            background: transparent;
+            box-shadow: none;
+            filter: none;
+            border-radius: 12px;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            background: transparent;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
+        }
+        
+        .hero-image img:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(26, 115, 232, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="img/Only Voxify logo non text (1).png" alt="Voxify Logo">
+                <h1>Voxify</h1>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-item">Home</a></li>
+                    <li><a href="#features" class="nav-item">Features</a></li>
+                    <li><a href="#how-it-works" class="nav-item">How It Works</a></li>
+                    <li><a href="#testimonials" class="nav-item">Testimonials</a></li>
+                    <li><a href="login.html" class="btn btn-primary nav-cta">Get Started</a></li>
+                </ul>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="dynamic-shape shape-1"></div>
+        <div class="dynamic-shape shape-2"></div>
+        <div class="dynamic-shape shape-3"></div>
+        <div class="container hero-content">
+            <div class="hero-text fade-left">
+                <h1>Connect Globally, Communicate Locally</h1>
+                <p>Voxify breaks language barriers with real-time chat and instant translation. Connect with anyone, anywhere, in any language.</p>
+                <div class="language-selector">
+                    <button class="lang-btn active btn-ripple">English</button>
+                    <button class="lang-btn btn-ripple">Español</button>
+                    <button class="lang-btn btn-ripple">Français</button>
+                    <button class="lang-btn btn-ripple">Deutsch</button>
+                    <button class="lang-btn btn-ripple">中文</button>
+                    <button class="lang-btn btn-ripple">日本語</button>
+                </div>
+                <div class="hero-buttons">
+                    <a href="login.html" class="btn btn-secondary btn-animated btn-ripple">Get Started for Free</a>
+                    <a href="#demo" class="btn btn-outline btn-animated btn-ripple">See Demo</a>
+                </div>
+            </div>
+            <div class="hero-image fade-right">
+                <div class="chat-preview">
+                    <div class="chat-header">
+                        <div class="chat-user">
+                            <div class="user-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Yashank Gupta">
+                            </div>
+                            <div class="user-info">
+                                <h4>Yashank Gupta</h4>
+                                <span class="status online">Online</span>
+                            </div>
+                        </div>
+                        <div class="chat-actions">
+                            <button><i class="fas fa-video"></i></button>
+                            <button><i class="fas fa-phone"></i></button>
+                            <button><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                    </div>
+                    <div class="chat-messages">
+                        <div class="message-bubble received">
+                            <div class="message-text">Hey there! How's your project coming along?</div>
+                            <div class="message-time">10:32 AM</div>
+                        </div>
+                        <div class="message-bubble translated">
+                            <div class="message-text">¡Hola! ¿Cómo va tu proyecto?</div>
+                            <div class="message-info">Translated from English</div>
+                        </div>
+                        <div class="message-bubble sent">
+                            <div class="message-text">It's going great! Almost finished with the UI improvements.</div>
+                            <div class="message-time">10:33 AM</div>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <div class="language-dropdown">
+                            <select>
+                                <option>English</option>
+                            </select>
+                        </div>
+                        <input type="text" placeholder="Type your message...">
+                        <button class="send-btn"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Voxify?</h2>
+                <p>Experience communication without boundaries</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card fade-in tilt-card delay-100">
+                    <div class="feature-icon">
+                        <div class="icon-circle">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                    </div>
+                    <h3>Real-time Messaging</h3>
+                    <p>Instant message delivery with WebSocket technology. No delays, no refreshing.</p>
+                    <div class="feature-visual">
+                        <div class="typing-indicator">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card fade-in tilt-card delay-200">
+                    <div class="feature-icon">
+                        <div class="icon-circle">
+                            <i class="fas fa-language"></i>
+                        </div>
+                    </div>
+                    <h3>Instant Translation</h3>
+                    <p>Communicate in 50+ languages with automatic message translation.</p>
+                    <div class="feature-visual translation-demo">
+                        <div class="original-message">Hello, how are you?</div>
+                        <div class="translation-arrow"><i class="fas fa-arrow-down"></i></div>
+                        <div class="translated-message">¡Hola! ¿Cómo estás?</div>
+                    </div>
+                </div>
+                <div class="feature-card fade-in tilt-card delay-300">
+                    <div class="feature-icon">
+                        <div class="icon-circle">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                    </div>
+                    <h3>Secure Chats</h3>
+                    <p>End-to-end encryption keeps your conversations private and secure.</p>
+                    <div class="feature-visual">
+                        <div class="security-shield">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card fade-in tilt-card delay-400">
+                    <div class="feature-icon">
+                        <div class="icon-circle">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                    </div>
+                    <h3>Mobile Responsive</h3>
+                    <p>Perfect experience on any device - desktop, tablet, or smartphone.</p>
+                    <div class="feature-visual responsive-devices">
+                        <i class="fas fa-desktop"></i>
+                        <i class="fas fa-tablet-alt"></i>
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>How Voxify Works</h2>
+                <p>Simple, intuitive, and powerful</p>
+            </div>
+            <div class="steps">
+                <div class="step-card fade-up delay-100">
+                    <div class="step-number">1</div>
+                    <h3>Sign Up</h3>
+                    <p>Create your free account in seconds. No credit card required.</p>
+                    <div class="step-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                </div>
+                <div class="step-card fade-up delay-200">
+                    <div class="step-number">2</div>
+                    <h3>Add Contacts</h3>
+                    <p>Connect with friends or meet new people from around the world.</p>
+                    <div class="step-icon">
+                        <i class="fas fa-address-book"></i>
+                    </div>
+                </div>
+                <div class="step-card fade-up delay-300">
+                    <div class="step-number">3</div>
+                    <h3>Start Chatting</h3>
+                    <p>Send messages that are automatically translated in real-time.</p>
+                    <div class="step-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Users Say</h2>
+                <p>Join thousands of satisfied users worldwide</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in card-hover delay-100">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Maria Rodriguez">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>Maria Rodriguez</h4>
+                            <p>Language Teacher</p>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"Voxify has revolutionized my online language classes. My students from different countries can now communicate effortlessly!"</p>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in card-hover delay-200">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="David Kim">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>David Kim</h4>
+                            <p>Business Consultant</p>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"I work with clients across Asia and Europe. Voxify makes our communication seamless despite language differences."</p>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in card-hover delay-300">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/67.jpg" alt="Sophie Martin">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>Sophie Martin</h4>
+                            <p>Travel Blogger</p>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"As someone who travels constantly, Voxify has been a game-changer for connecting with locals in different countries."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="dynamic-shape shape-1"></div>
+        <div class="dynamic-shape shape-2"></div>
+        <div class="container">
+            <h2 class="fade-up">Ready to Get Started?</h2>
+            <p class="fade-up" style="transition-delay: 0.2s;">Join millions of users worldwide and experience the future of communication with Voxify.</p>
+            <a href="login.html" class="btn btn-secondary btn-glow btn-animated btn-ripple fade-up" style="transition-delay: 0.4s;">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="dynamic-shape shape-1"></div>
+        <div class="dynamic-shape shape-2"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="img/Only Voxify logo non text (1).png" alt="Voxify Logo">
+                    <h2>Voxify</h2>
+                    <p>Connect globally, communicate locally. Break language barriers with our real-time translation chat app.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column fade-up delay-100">
+                        <h3>Voxify</h3>
+                        <ul class="staggered-list">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Our Team</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column fade-up delay-200">
+                        <h3>Resources</h3>
+                        <ul class="staggered-list">
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Community</a></li>
+                            <li><a href="#">Developers</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column fade-up delay-300">
+                        <h3>Legal</h3>
+                        <ul class="staggered-list">
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Cookie Policy</a></li>
+                            <li><a href="#">GDPR</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Voxify. All rights reserved.</p>
+                <div class="language-selector-mini">
+                    <select>
+                        <option>English</option>
+                        <option>Español</option>
+                        <option>Français</option>
+                        <option>Deutsch</option>
+                        <option>中文</option>
+                        <option>日本語</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
