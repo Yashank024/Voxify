@@ -35,11 +35,24 @@ const AuthAPI = {
                 credentials: 'include' // Important for session cookie
             });
             
-            // Parse the JSON response
-            const data = await response.json();
-            console.log('Login response:', data);
+            // Get response as text first to handle potential non-JSON responses
+            const text = await response.text();
+            let data;
             
-            if (!response.ok) {
+            try {
+                // Try to parse the text as JSON
+                data = JSON.parse(text);
+                console.log('Login response:', data);
+            } catch (parseError) {
+                // If parsing fails, log the raw response and throw an error
+                console.error('Invalid JSON response:', text);
+                return {
+                    success: false,
+                    error: 'Server error: unexpected response format'
+                };
+            }
+            
+            if (!response.ok || !data.success) {
                 return { 
                     success: false, 
                     error: data.error || `Server error: ${response.status}` 
@@ -93,11 +106,24 @@ const AuthAPI = {
                 credentials: 'include' // Important for session cookie
             });
             
-            // Parse the JSON response
-            const data = await response.json();
-            console.log('Signup response:', data);
+            // Get response as text first to handle potential non-JSON responses
+            const text = await response.text();
+            let data;
             
-            if (!response.ok) {
+            try {
+                // Try to parse the text as JSON
+                data = JSON.parse(text);
+                console.log('Signup response:', data);
+            } catch (parseError) {
+                // If parsing fails, log the raw response and throw an error
+                console.error('Invalid JSON response:', text);
+                return {
+                    success: false,
+                    error: 'Server error: unexpected response format'
+                };
+            }
+            
+            if (!response.ok || !data.success) {
                 return { 
                     success: false, 
                     error: data.error || `Server error: ${response.status}` 
